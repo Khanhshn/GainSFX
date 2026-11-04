@@ -1,0 +1,1 @@
+window.GAINSFX_SUPABASE_CONFIG={url:"https://kqjbhqmaecdalxxjtjlz.supabase.co",publishableKey:"sb_publishable_uEUl5KjWZHif9vlMAH1zag_m1LmX7xI"};

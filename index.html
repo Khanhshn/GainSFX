@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090e1c">
+  <meta name="description" content="GainSFX: thư viện hiệu ứng âm thanh với tìm kiếm từ khóa, tìm bằng micro, nghe thử và tải xuống.">
+  <title>GainSFX — Thư viện hiệu ứng âm thanh</title>
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Điều hướng chính">
+      <a class="brand" href="#home" aria-label="GainSFX — Trang chủ">
+        <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><path d="M4 22h4m3-7v14m5-20v26m5-16v6m5-17v28m5-22v16m5-12v4m4-2h3" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></span>
+        <span>Gain<span>SFX</span></span>
+      </a>
+      <div class="workspace-tag"><span class="live-dot"></span> KHÔNG GIAN SÁNG TẠO</div>
+      <div class="sidebar-content">
+        <p class="nav-caption">KHÁM PHÁ</p>
+        <nav class="menu">
+          <button class="nav-btn active" data-view="discover"><span data-icon="compass"></span> <span>Khám phá</span> <span class="nav-shortcut">↗</span></button>
+          <button class="nav-btn" data-action="micro"><span data-icon="mic"></span> <span>Tìm bằng micro</span></button>
+          <button class="nav-btn" data-action="similar"><span data-icon="audio"></span> <span>Tìm âm thanh tương tự</span></button>
+          <button class="nav-btn" data-view="favorites"><span data-icon="heart"></span> <span>Đã yêu thích</span> <span class="nav-counter" id="favCount">0</span></button>
+          <button class="nav-btn" data-view="uploads"><span data-icon="upload"></span> <span>Tệp của tôi</span></button>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="row-caption"><p class="nav-caption">DANH MỤC</p><span data-icon="chevron-down"></span></div>
+        <nav class="category-nav" id="sidebarCategories"></nav>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="tiny-wave" aria-hidden="true"><span style="--h:7px"></span><span style="--h:12px"></span><span style="--h:18px"></span><span style="--h:11px"></span><span style="--h:24px"></span><span style="--h:16px"></span><span style="--h:10px"></span><span style="--h:22px"></span><span style="--h:17px"></span><span style="--h:7px"></span><span style="--h:14px"></span><span style="--h:23px"></span><span style="--h:15px"></span><span style="--h:9px"></span><span style="--h:18px"></span><span style="--h:12px"></span><span style="--h:6px"></span></div>
+        <p>Ý tưởng âm thanh tiếp theo<br><strong>bắt đầu tại đây.</strong></p>
+        <button class="sidebar-cta" data-action="import">Thêm âm thanh của bạn <span data-icon="arrow-up-right"></span></button>
+        <div class="sidebar-footer"><span class="live-dot"></span> Giao diện demo · v1.1</div>
+      </div>
+    </aside>
+
+    <div class="main-frame">
+      <header class="topbar">
+        <button class="mobile-menu icon-btn" id="mobileMenu" aria-label="Mở danh mục"><span data-icon="menu"></span></button>
+        <form id="searchForm" class="search-box" role="search">
+          <span data-icon="search" class="search-svg"></span>
+          <input id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Tìm tiếng mưa, tiếng bước chân, tiếng chuông..." aria-label="Tìm Sound Effect bằng tên">
+          <span class="search-hint" aria-hidden="true">ENTER ↵</span>
+          <button class="search-submit" type="submit" aria-label="Tìm kiếm"><span data-icon="arrow-right"></span></button>
+        </form>
+        <button class="header-mic" data-action="micro" aria-label="Tìm kiếm bằng micro" title="Tìm bằng micro"><span data-icon="mic"></span></button>
+        <button class="header-fav icon-btn" data-view="favorites" title="Âm thanh yêu thích" aria-label="Âm thanh yêu thích"><span data-icon="heart"></span></button>
+        <button class="header-upload" data-action="import"><span data-icon="upload"></span> <span>Tải tệp lên</span></button>
+        <button type="button" class="avatar" title="Tài khoản (chưa kết nối đăng nhập)" aria-label="Tài khoản của tôi" data-action="account">G</button>
+      </header>
+
+      <div class="page-scroll" id="pageScroll">
+        <div class="page-content">
+          <section class="hero" aria-label="Giới thiệu GainSFX">
+            <div class="hero-shine"></div><div class="hero-grain"></div>
+            <div class="hero-copy">
+              <div class="eyebrow"><span class="eyebrow-dot"></span> THƯ VIỆN SOUND EFFECTS</div>
+              <h1>Tìm đúng âm thanh.<br><em>Chạm đến cảm xúc.</em></h1>
+              <p>Khám phá, nghe thử và tải xuống hiệu ứng âm thanh. Tìm nhanh bằng từ khóa hoặc thu âm trực tiếp từ micro.</p>
+              <div class="hero-actions"><button class="primary-btn" data-action="micro"><span data-icon="mic"></span> Tìm bằng âm thanh <span data-icon="arrow-up-right"></span></button><button class="ghost-btn" data-action="scroll-sounds">Khám phá thư viện <span data-icon="arrow-right"></span></button></div>
+            </div>
+            <div class="hero-art" aria-hidden="true"><div class="hero-orb"></div><div class="hero-orb-inner"></div><div class="hero-bars" id="heroBars"></div><span class="hero-arc a1"></span><span class="hero-arc a2"></span><span class="hero-arc a3"></span></div>
+            <div class="hero-bottom"><span><span data-icon="sparkles"></span> Được tạo dành cho người làm nội dung</span><span><span class="live-dot"></span> <span id="heroCount">18</span> âm thanh mẫu</span></div>
+          </section>
+
+          <section class="stats-row" aria-label="Tính năng"><div class="stat"><span data-icon="audio"></span><div><strong id="statCount">18</strong><small>Sound Effect</small></div></div><div class="stat"><span data-icon="mic"></span><div><strong>Micro</strong><small>Tìm âm thanh</small></div></div><div class="stat"><span data-icon="download"></span><div><strong>MP3</strong><small>Nghe & tải xuống</small></div></div><div class="stat"><span data-icon="zap"></span><div><strong>Nhanh chóng</strong><small>Không cần đăng nhập</small></div></div></section>
+
+          <section class="library" id="soundsSection">
+            <div class="library-heading"><div><div class="section-eyebrow">KHÔNG GIAN ÂM THANH</div><h2 id="libraryTitle">Khám phá âm thanh <span class="count-pill" id="resultsCount">18</span></h2><p id="librarySubtitle">Tìm giai điệu của thế giới qua từng âm thanh nhỏ.</p></div><button class="clear-filter" id="clearFilters" data-action="clear-filters" hidden><span data-icon="x"></span> Xóa bộ lọc</button></div>
+            <div class="similarity-banner" id="similarityBanner" hidden><span class="similarity-banner-icon" data-icon="scan"></span><div><strong>Đã phân tích mẫu âm thanh</strong><small>Đang xếp hạng theo độ tương đồng về đặc trưng tín hiệu; không phải nhận diện AI theo ngữ nghĩa.</small></div><button data-action="clear-similar" aria-label="Xóa tìm kiếm bằng âm thanh"><span data-icon="x"></span></button></div>
+            <div class="filter-row"><div class="filter-chips" id="filterChips"></div><div class="sort-wrap"><span data-icon="sliders"></span><select id="sortSelect" aria-label="Sắp xếp âm thanh"><option value="recommended">Phù hợp nhất</option><option value="name">Tên A–Z</option><option value="short">Ngắn nhất</option><option value="long">Dài nhất</option><option value="newest">Mới nhất</option></select><span data-icon="chevron-down"></span></div></div>
+            <div class="explore-layout">
+              <div class="sounds-column"><div class="grid-meta"><span id="gridMeta">Đang tải thư viện...</span><span class="grid-meta-right" id="gridMetaRight">01 / 01</span></div><div class="sound-grid" id="soundGrid"></div><div id="emptyState" class="empty-state" hidden><div class="empty-icon" data-icon="search"></div><h3>Chưa tìm thấy âm thanh phù hợp</h3><p>Thử một từ khóa khác, đổi danh mục hoặc xóa bộ lọc để xem tất cả.</p><button class="secondary-btn" data-action="clear-filters">Xem tất cả âm thanh</button></div><p class="catalog-note"><span data-icon="info"></span> Thư viện đang dùng âm thanh <strong>tổng hợp để minh họa</strong>, không phải bản thu thực tế. Tệp bạn thêm chỉ lưu trong phiên làm việc này.</p></div>
+              <aside class="detail-panel" id="detailPanel" aria-label="Chi tiết hiệu ứng âm thanh"><div class="detail-topline"><span><span class="detail-dot"></span> ĐANG CHỌN</span><span data-icon="more-horizontal"></span></div><div class="detail-icon" id="detailIcon">🌧️</div><div class="detail-wavebox"><canvas id="detailWave" width="500" height="124" aria-label="Dạng sóng minh họa"></canvas><span class="wave-tip">WAVEFORM · PREVIEW</span></div><div class="detail-title-row"><div><h3 id="detailTitle">Tiếng mưa rơi</h3><span class="detail-category" id="detailCategory">Thiên nhiên</span></div><button class="detail-fav" data-action="favorite-current" aria-label="Thêm vào yêu thích"><span data-icon="heart"></span></button></div><p class="detail-description" id="detailDescription">Mưa nhẹ, rào rào trên nền đất</p><div class="detail-specs"><div><span>ĐỊNH DẠNG</span><strong id="detailFormat">MP3</strong></div><div><span>THỜI LƯỢNG</span><strong id="detailDuration">0:07</strong></div><div><span>PHÂN LOẠI</span><strong id="detailLicense">Demo</strong></div></div><button class="detail-download" data-action="download-current"><span data-icon="download"></span> Tải âm thanh xuống <span data-icon="arrow-up-right"></span></button><div class="detail-tags"><span>THẺ LIÊN QUAN</span><div id="detailTags"></div></div><div class="detail-related"><div class="related-heading"><strong>Âm thanh tương tự</strong><span data-icon="arrow-up-right"></span></div><div id="relatedList"></div></div></aside>
+            </div>
+          </section>
+          <footer class="site-footer"><div>© 2026 <strong>GainSFX</strong> · Dự án học tập về lập trình âm thanh.</div><div>Made for creators <span>✦</span> Demo v1.3</div></footer>
+        </div>
+      </div>
+
+      <div class="player" id="player"><div class="player-track"><div class="player-cover" id="playerCover">🌧️</div><div class="player-track-name"><strong id="playerTitle">Chọn một Sound Effect</strong><span id="playerSubtitle">Nhấn phát để bắt đầu nghe thử</span></div><button class="player-favorite icon-btn" data-action="favorite-current" aria-label="Yêu thích"><span data-icon="heart"></span></button></div><div class="player-center"><div class="player-controls"><button class="player-skip" data-action="prev" aria-label="Âm thanh trước"><span data-icon="skip-back"></span></button><button class="play-main" data-action="player-toggle" aria-label="Phát hoặc tạm dừng"><span id="mainPlayIcon" data-icon="play"></span></button><button class="player-skip" data-action="next" aria-label="Âm thanh tiếp theo"><span data-icon="skip-forward"></span></button></div><div class="progress-line"><span id="currentTime">0:00</span><input id="progressRange" type="range" min="0" max="100" value="0" aria-label="Tua âm thanh"><span id="totalTime">0:00</span></div></div><div class="player-right"><span class="speaker-svg" data-icon="volume"></span><input id="volumeRange" type="range" min="0" max="100" value="75" aria-label="Điều chỉnh âm lượng"><button class="player-download icon-btn" data-action="download-current" title="Tải âm thanh"><span data-icon="download"></span></button></div></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="microModal" hidden><div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" data-action="close-modal" aria-label="Đóng"><span data-icon="x"></span></button><div class="modal-eyebrow">GAIN SFX · AUDIO SEARCH</div><h2 id="modalTitle">Tìm kiếm bằng âm thanh</h2><p class="modal-intro">Ghi lại âm thanh từ micro hoặc tải tệp mẫu để tìm Sound Effect có đặc trưng gần giống.</p><div class="modal-tabs"><button class="modal-tab active" data-tab="micro"><span data-icon="mic"></span> Dùng micro</button><button class="modal-tab" data-tab="file"><span data-icon="upload"></span> Tải tệp âm thanh</button></div><div class="modal-tab-content" id="micTab"><div class="mic-viz"><span class="mic-circle"><span data-icon="mic"></span></span><div class="mic-bars" id="micBars"></div><span class="mic-time" id="micTime">00:00</span></div><p class="modal-status" id="micStatus">Nhấn nút bên dưới và cho phép trình duyệt truy cập micro.</p><div class="modal-actions"><button class="primary-btn large-btn" data-action="start-record" id="recordStart"><span data-icon="mic"></span> Bắt đầu thu âm</button><button class="danger-btn large-btn" data-action="stop-record" id="recordStop" hidden><span data-icon="square"></span> Dừng và tìm kiếm</button></div><p class="modal-fineprint">Thu tối đa 12 giây · Micro chỉ hoạt động trên HTTPS hoặc localhost · Không tải bản ghi lên máy chủ.</p></div><div class="modal-tab-content" id="fileTab" hidden><label class="file-drop" for="compareFile"><span data-icon="upload-cloud"></span><strong>Chọn âm thanh để so khớp</strong><small>MP3, WAV, OGG, M4A... · tối đa 20 MB</small></label><input id="compareFile" type="file" accept="audio/*" hidden><p class="modal-fineprint">Việc so khớp diễn ra ngay trên trình duyệt, dựa trên phổ tần và biến thiên năng lượng.</p></div></div></div>
+  <input type="file" id="importFile" accept="audio/*" multiple hidden>
+  <div class="modal-backdrop" id="accountModal" hidden>
+    <div class="modal-card cloud-dialog" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+      <button class="modal-close" type="button" data-action="close-account" aria-label="Đóng"><span data-icon="x"></span></button>
+      <div class="modal-eyebrow">GAINSFX · TÀI KHOẢN</div>
+      <h2 id="accountTitle">Tài khoản GainSFX</h2>
+      <p class="modal-intro" id="accountIntro">Đăng nhập để lưu SFX và chọn công khai hoặc riêng tư.</p>
+      <p class="cloud-notice" id="cloudNotConfigured" hidden>Chưa kết nối Supabase. Xem tệp HUONG_DAN_SUPABASE.md để kích hoạt đăng nhập và lưu trữ thực.</p>
+      <div id="accountLoggedOut">
+        <div class="modal-tabs" aria-label="Đăng nhập hoặc đăng ký"><button type="button" class="modal-tab active" data-auth-mode="signin">Đăng nhập</button><button type="button" class="modal-tab" data-auth-mode="signup">Tạo tài khoản</button></div>
+        <form id="authForm" class="cloud-form">
+          <label>Email <input id="authEmail" type="email" autocomplete="email" placeholder="email@example.com" required></label>
+          <label>Mật khẩu <input id="authPassword" type="password" autocomplete="current-password" minlength="6" placeholder="Ít nhất 6 ký tự" required></label>
+          <button class="primary-btn large-btn" type="submit" id="authSubmit">Đăng nhập</button>
+        </form>
+        <div class="auth-separator"><span>hoặc</span></div>
+        <button type="button" id="authGoogle" class="google-auth-btn" data-action="google-login" aria-label="Tiếp tục bằng tài khoản Google"><span class="google-mark" aria-hidden="true">G</span> Tiếp tục với Google</button>
+        <p class="cloud-hint">Nếu đăng ký và chưa đăng nhập được, hãy kiểm tra email xác nhận. Đăng nhập Google cần kích hoạt OAuth trong Supabase.</p>
+      </div>
+      <div id="accountLoggedIn" hidden>
+        <div class="signed-in-card"><span class="account-letter" id="accountLetter">G</span><span><strong id="accountEmail"></strong><small id="accountRole">Thành viên</small></span></div>
+        <div class="account-actions"><button type="button" class="secondary-btn" data-action="open-upload">Tải Sound Effect lên</button><button type="button" class="secondary-btn" id="adminOpen" data-action="admin-panel" hidden>Quản trị SFX công khai</button><button type="button" class="secondary-btn" data-action="logout">Đăng xuất</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="cloudUploadModal" hidden>
+    <div class="modal-card cloud-dialog" role="dialog" aria-modal="true" aria-labelledby="uploadTitle">
+      <button class="modal-close" type="button" data-action="close-upload" aria-label="Đóng"><span data-icon="x"></span></button>
+      <div class="modal-eyebrow">GAINSFX · CỘNG ĐỒNG</div>
+      <h2 id="uploadTitle">Đăng tải Sound Effect</h2>
+      <p class="modal-intro">Chọn một bản ghi có quyền sử dụng và chọn ai có thể xem hoặc tải xuống.</p>
+      <form id="cloudUploadForm" class="cloud-form">
+        <label>Tệp âm thanh (tối đa 20 MB) <input id="cloudFile" type="file" accept=".mp3,.wav,.ogg,.m4a,.aac,.flac,audio/*" required></label>
+        <label>Tên Sound Effect <input id="cloudTitle" type="text" maxlength="100" placeholder="Ví dụ: Tiếng mưa trên mái nhà" required></label>
+        <label>Danh mục <select id="cloudCategory"><option>Thiên nhiên</option><option>Động vật</option><option>Con người</option><option>Phương tiện</option><option>Vật dụng</option><option>Hiệu ứng</option></select></label>
+        <label>Mô tả (không bắt buộc) <textarea id="cloudDescription" rows="3" maxlength="800" placeholder="Mô tả ngắn về âm thanh"></textarea></label>
+        <div class="visibility-choice"><label><input type="radio" name="cloudVisibility" value="public" checked> <span><strong>🌍 Công khai</strong><small>Mọi người có thể tìm kiếm, nghe và tải về.</small></span></label><label><input type="radio" name="cloudVisibility" value="private"> <span><strong>🔒 Riêng tư</strong><small>Chỉ tài khoản của bạn xem được trong thư viện.</small></span></label></div>
+        <button class="primary-btn large-btn" type="submit" id="uploadSubmit">Tải lên và lưu</button>
+        <p class="cloud-hint">Bạn cần có quyền sử dụng hoặc chia sẻ âm thanh. Quyền Public/Private được chọn khi tải lên; bản này chưa hỗ trợ đổi quyền sau khi đăng.</p>
+      </form>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="adminModal" hidden>
+    <div class="modal-card cloud-dialog" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+      <button class="modal-close" type="button" data-action="close-admin" aria-label="Đóng"><span data-icon="x"></span></button>
+      <div class="modal-eyebrow">GAINSFX · ADMIN</div><h2 id="adminTitle">Quản trị nội dung công khai</h2>
+      <p class="modal-intro">Tài khoản admin có thể gỡ các bản SFX được đăng công khai. Chỉ quyền được xác nhận tại cơ sở dữ liệu mới có hiệu lực.</p>
+      <div id="adminSoundList" class="admin-sound-list"></div>
+    </div>
+  </div>
+  <div class="toast-area" id="toastArea" aria-live="polite"></div>
+  <audio id="audioElement" preload="metadata"></audio>
+  <script src="catalog.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="cloud.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

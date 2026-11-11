@@ -1,2 +1,3 @@
+# Deploy GainSFX as a static site. No build tools are required.
 [build]
   publish = "."

@@ -34,7 +34,7 @@
         <div class="tiny-wave" aria-hidden="true"><span style="--h:7px"></span><span style="--h:12px"></span><span style="--h:18px"></span><span style="--h:11px"></span><span style="--h:24px"></span><span style="--h:16px"></span><span style="--h:10px"></span><span style="--h:22px"></span><span style="--h:17px"></span><span style="--h:7px"></span><span style="--h:14px"></span><span style="--h:23px"></span><span style="--h:15px"></span><span style="--h:9px"></span><span style="--h:18px"></span><span style="--h:12px"></span><span style="--h:6px"></span></div>
         <p>Ý tưởng âm thanh tiếp theo<br><strong>bắt đầu tại đây.</strong></p>
         <button class="sidebar-cta" data-action="import">Thêm âm thanh của bạn <span data-icon="arrow-up-right"></span></button>
-        <div class="sidebar-footer"><span class="live-dot"></span> Giao diện demo · v1.1</div>
+        <div class="sidebar-footer"><span class="live-dot"></span> Giao diện demo · v1.4</div>
       </div>
     </aside>
 
@@ -50,7 +50,7 @@
         <button class="header-mic" data-action="micro" aria-label="Tìm kiếm bằng micro" title="Tìm bằng micro"><span data-icon="mic"></span></button>
         <button class="header-fav icon-btn" data-view="favorites" title="Âm thanh yêu thích" aria-label="Âm thanh yêu thích"><span data-icon="heart"></span></button>
         <button class="header-upload" data-action="import"><span data-icon="upload"></span> <span>Tải tệp lên</span></button>
-        <button type="button" class="avatar" title="Tài khoản (chưa kết nối đăng nhập)" aria-label="Tài khoản của tôi" data-action="account">G</button>
+        <button type="button" class="avatar" title="Tài khoản GainSFX" aria-label="Tài khoản của tôi" data-action="account">G</button>
       </header>
 
       <div class="page-scroll" id="pageScroll">
@@ -74,11 +74,11 @@
             <div class="similarity-banner" id="similarityBanner" hidden><span class="similarity-banner-icon" data-icon="scan"></span><div><strong>Đã phân tích mẫu âm thanh</strong><small>Đang xếp hạng theo độ tương đồng về đặc trưng tín hiệu; không phải nhận diện AI theo ngữ nghĩa.</small></div><button data-action="clear-similar" aria-label="Xóa tìm kiếm bằng âm thanh"><span data-icon="x"></span></button></div>
             <div class="filter-row"><div class="filter-chips" id="filterChips"></div><div class="sort-wrap"><span data-icon="sliders"></span><select id="sortSelect" aria-label="Sắp xếp âm thanh"><option value="recommended">Phù hợp nhất</option><option value="name">Tên A–Z</option><option value="short">Ngắn nhất</option><option value="long">Dài nhất</option><option value="newest">Mới nhất</option></select><span data-icon="chevron-down"></span></div></div>
             <div class="explore-layout">
-              <div class="sounds-column"><div class="grid-meta"><span id="gridMeta">Đang tải thư viện...</span><span class="grid-meta-right" id="gridMetaRight">01 / 01</span></div><div class="sound-grid" id="soundGrid"></div><div id="emptyState" class="empty-state" hidden><div class="empty-icon" data-icon="search"></div><h3>Chưa tìm thấy âm thanh phù hợp</h3><p>Thử một từ khóa khác, đổi danh mục hoặc xóa bộ lọc để xem tất cả.</p><button class="secondary-btn" data-action="clear-filters">Xem tất cả âm thanh</button></div><p class="catalog-note"><span data-icon="info"></span> Thư viện đang dùng âm thanh <strong>tổng hợp để minh họa</strong>, không phải bản thu thực tế. Tệp bạn thêm chỉ lưu trong phiên làm việc này.</p></div>
+              <div class="sounds-column"><div class="grid-meta"><span id="gridMeta">Đang tải thư viện...</span><span class="grid-meta-right" id="gridMetaRight">01 / 01</span></div><div class="sound-grid" id="soundGrid"></div><div id="emptyState" class="empty-state" hidden><div class="empty-icon" data-icon="search"></div><h3>Chưa tìm thấy âm thanh phù hợp</h3><p>Thử một từ khóa khác, đổi danh mục hoặc xóa bộ lọc để xem tất cả.</p><button class="secondary-btn" data-action="clear-filters">Xem tất cả âm thanh</button></div><p class="catalog-note"><span data-icon="info"></span> Thư viện đang dùng âm thanh <strong>tổng hợp để minh họa</strong>, không phải bản thu thực tế. SFX do người dùng tải lên được lưu trên Supabase theo quyền Public/Private.</p></div>
               <aside class="detail-panel" id="detailPanel" aria-label="Chi tiết hiệu ứng âm thanh"><div class="detail-topline"><span><span class="detail-dot"></span> ĐANG CHỌN</span><span data-icon="more-horizontal"></span></div><div class="detail-icon" id="detailIcon">🌧️</div><div class="detail-wavebox"><canvas id="detailWave" width="500" height="124" aria-label="Dạng sóng minh họa"></canvas><span class="wave-tip">WAVEFORM · PREVIEW</span></div><div class="detail-title-row"><div><h3 id="detailTitle">Tiếng mưa rơi</h3><span class="detail-category" id="detailCategory">Thiên nhiên</span></div><button class="detail-fav" data-action="favorite-current" aria-label="Thêm vào yêu thích"><span data-icon="heart"></span></button></div><p class="detail-description" id="detailDescription">Mưa nhẹ, rào rào trên nền đất</p><div class="detail-specs"><div><span>ĐỊNH DẠNG</span><strong id="detailFormat">MP3</strong></div><div><span>THỜI LƯỢNG</span><strong id="detailDuration">0:07</strong></div><div><span>PHÂN LOẠI</span><strong id="detailLicense">Demo</strong></div></div><button class="detail-download" data-action="download-current"><span data-icon="download"></span> Tải âm thanh xuống <span data-icon="arrow-up-right"></span></button><div class="detail-tags"><span>THẺ LIÊN QUAN</span><div id="detailTags"></div></div><div class="detail-related"><div class="related-heading"><strong>Âm thanh tương tự</strong><span data-icon="arrow-up-right"></span></div><div id="relatedList"></div></div></aside>
             </div>
           </section>
-          <footer class="site-footer"><div>© 2026 <strong>GainSFX</strong> · Dự án học tập về lập trình âm thanh.</div><div>Made for creators <span>✦</span> Demo v1.3</div></footer>
+          <footer class="site-footer"><div>© 2026 <strong>GainSFX</strong> · Dự án học tập về lập trình âm thanh.</div><div>Made for creators <span>✦</span> Demo v1.4</div></footer>
         </div>
       </div>
 
